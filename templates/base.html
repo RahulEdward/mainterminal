@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MainTerminal{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        daisyui: {
+          themes: ["light", "dark"],
+        },
+      }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css" rel="stylesheet">
+  </head>
+  <body class="flex flex-col min-h-screen" data-theme="dark">
+  <!-- Navbar -->
+  <header class="navbar bg-base-100 shadow-lg">
+    <div class="flex-1">
+      <a href="{% url 'index' %}" class="btn btn-ghost normal-case text-xl">MainTerminal</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+      </ul>
+    </div>
+    <!-- Theme Toggle Button -->
+    <div class="ml-4">
+      <label class="swap swap-rotate">
+        <input type="checkbox" id="theme-toggle" />
+        <!-- Sun Icon -->
+        <svg
+          class="swap-on fill-current w-8 h-8"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M5.64 17.64a9 9 0 1112.72-12.72 9 9 0 01-12.72 12.72zM12 7a1 1 0 100-2 1 1 0 000 2zm0 10a1 1 0 100-2 1 1 0 000 2zm-5-5a1 1 0 100-2 1 1 0 000 2zm10 0a1 1 0 100-2 1 1 0 000 2zm-7.66 7.07a1 1 0 00-1.41 0 1 1 0 000 1.41 1 1 0 001.41 0zM17.66 5.93a1 1 0 00-1.41 0 1 1 0 000 1.41 1 1 0 001.41 0zm-12.72 0a1 1 0 000 1.41 1 1 0 001.41 0 1 1 0 000-1.41zM16.24 16.24a1 1 0 00-1.41 0 1 1 0 000 1.41 1 1 0 001.41 0z"
+          ></path>
+        </svg>
+        <!-- Moon Icon -->
+        <svg
+          class="swap-off fill-current w-8 h-8"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21.64 13.88A9 9 0 1110.12 2.36 7 7 0 0021.64 13.88z"
+          ></path>
+        </svg>
+      </label>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-base-300 text-base-content py-4 text-center">
+    &copy; 2025 MainTerminal. All rights reserved.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the theme toggle checkbox and html element
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.querySelector('body');
+  
+      // Load the saved theme from localStorage or default to dark
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      html.setAttribute('data-theme', savedTheme);
+      themeToggle.checked = savedTheme === 'light';
+  
+      // Add event listener for theme toggle
+      themeToggle.addEventListener('change', function() {
+        const newTheme = this.checked ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Debug output
+        console.log('Theme changed to:', newTheme);
+      });
+  
+      // Debug output
+      console.log('Current theme:', savedTheme);
+    });
+  </script>
+</body>
+</html>

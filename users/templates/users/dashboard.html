@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - MainTerminal{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-8rem)] p-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-base-100 shadow-lg rounded-lg p-6">
+      <h1 class="text-3xl font-bold mb-4">Welcome to OpenTerminal</h1>
+      <p class="text-lg mb-4">You are logged in as {{ user.username }}</p>
+      
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} mb-4">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <div class="mt-6">
+        <a href="{% url 'logout' %}" class="btn btn-error">
+          Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

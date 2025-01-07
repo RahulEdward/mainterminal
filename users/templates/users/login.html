@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Login - MainTerminal{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-[calc(100vh-8rem)]">
+  <div class="bg-base-100 shadow-lg p-6 rounded-lg w-full max-w-md">
+    <form method="POST">
+      {% csrf_token %}
+      <h1 class="text-3xl font-bold mb-4">Login</h1>
+      
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} mb-4">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Client ID</span>
+        </label>
+        <input 
+          type="text" 
+          name="client_id" 
+          class="input input-bordered w-full" 
+          required
+          placeholder="Enter your AngelOne client ID"
+        >
+      </div>
+
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">PIN</span>
+        </label>
+        <input 
+          type="password" 
+          name="pin" 
+          class="input input-bordered w-full" 
+          required
+          placeholder="Enter your PIN"
+        >
+      </div>
+
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">TOTP Code</span>
+        </label>
+        <input 
+          type="text" 
+          name="totp_code" 
+          class="input input-bordered w-full font-mono" 
+          required
+          placeholder="Enter 6-digit TOTP code"
+          pattern="[0-9]{6}"
+          maxlength="6"
+          inputmode="numeric"
+        >
+        <label class="label">
+          <span class="label-text-alt">Enter the 6-digit code from your authenticator app</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full mt-6">Login</button>
+    </form>
+
+    <div class="divider my-6">OR</div>
+
+    <div class="text-center">
+      <p class="mb-2">Don't have an account?</p>
+      <a 
+        href="{% url 'register' %}" 
+        class="btn btn-outline btn-secondary w-full"
+      >
+        Create New Account
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

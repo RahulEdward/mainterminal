@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}About - MainTerminal{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-8rem)] p-6">
+  <!-- Header Section -->
+  <header class="text-center mb-10">
+    <h1 class="text-5xl font-extrabold mb-4">MainTerminal</h1>
+    <p class="text-lg opacity-90 max-w-2xl mx-auto">
+      Empowering traders with precision and speed. Built using Python, Django, and AngelOne Smart API, MainTerminal is designed to make trading seamless and efficient.
+    </p>
+  </header>
+
+  <!-- Core Features Section -->
+  <section class="text-center mb-10">
+    <h2 class="text-3xl font-bold mb-8">Core Features of Trading Terminal</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <!-- Watchlists Card -->
+      <div class="card bg-primary text-primary-content shadow-xl hover:scale-105 transition-transform duration-300">
+        <div class="card-body">
+          <h3 class="card-title text-2xl justify-center">Realtime Watchlists</h3>
+          <p>Stay updated with live market data and customizable watchlists.</p>
+        </div>
+      </div>
+
+      <!-- Order Placement Card -->
+      <div class="card bg-secondary text-secondary-content shadow-xl hover:scale-105 transition-transform duration-300">
+        <div class="card-body">
+          <h3 class="card-title text-2xl justify-center">Quick Orders</h3>
+          <p>Easily place trades directly from your real-time watchlists.</p>
+        </div>
+      </div>
+
+      <!-- Order Book Card -->
+      <div class="card bg-accent text-accent-content shadow-xl hover:scale-105 transition-transform duration-300">
+        <div class="card-body">
+          <h3 class="card-title text-2xl justify-center">Order Book & Holdings</h3>
+          <p>Manage your Order Book, Trade Book, Position Book, and Holdings efficiently.</p>
+        </div>
+      </div>
+
+      <!-- Risk Management Card -->
+      <div class="card bg-info text-info-content shadow-xl hover:scale-105 transition-transform duration-300">
+        <div class="card-body">
+          <h3 class="card-title text-2xl justify-center">Risk Management</h3>
+          <p>Automatically manage risk with trailing stoploss orders and MTM-based square off.</p>
+        </div>
+      </div>
+
+      <!-- Voice Trading Card -->
+      <div class="card bg-success text-success-content shadow-xl hover:scale-105 transition-transform duration-300">
+        <div class="card-body">
+          <h3 class="card-title text-2xl justify-center">Voice Trading</h3>
+          <p>Trade seamlessly using our voice-enabled trading system.</p>
+        </div>
+      </div>
+
+      <!-- Keyboard Trading Card -->
+      <div class="card bg-warning text-warning-content shadow-xl hover:scale-105 transition-transform duration-300">
+        <div class="card-body">
+          <h3 class="card-title text-2xl justify-center">Keyboard Trading</h3>
+          <p>Execute orders swiftly using keyboard shortcuts for faster trades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Button -->
+  <div class="flex justify-center mt-10">
+    <a href="{% url 'index' %}" class="btn btn-primary btn-lg">Back to Home</a>
+  </div>
+</div>
+{% endblock %}

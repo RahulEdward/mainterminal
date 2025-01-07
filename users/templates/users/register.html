@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Register - MainTerminal{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-[calc(100vh-8rem)]">
+  <div class="bg-base-100 shadow-lg p-6 rounded-lg w-full max-w-md">
+    <form method="POST">
+      {% csrf_token %}
+      <h1 class="text-3xl font-bold mb-4">Register</h1>
+      
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} mb-4">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Username</span>
+        </label>
+        <input 
+          type="text" 
+          name="username" 
+          class="input input-bordered w-full" 
+          required
+          placeholder="Choose a username"
+          minlength="3"
+          maxlength="30"
+        >
+      </div>
+
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">Client ID</span>
+        </label>
+        <input 
+          type="text" 
+          name="client_id" 
+          class="input input-bordered w-full" 
+          required
+          placeholder="Enter your client ID"
+        >
+      </div>
+
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">API Key</span>
+        </label>
+        <input 
+          type="password" 
+          name="api_key" 
+          class="input input-bordered w-full" 
+          required
+          placeholder="Enter your API key"
+        >
+        <label class="label">
+          <span class="label-text-alt text-base-content/70">Make sure to save your API key securely</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full mt-6">Create Account</button>
+    </form>
+
+    <div class="divider my-6">OR</div>
+
+    <div class="text-center">
+      <p class="mb-2">Already have an account?</p>
+      <a 
+        href="{% url 'login' %}" 
+        class="btn btn-outline btn-secondary w-full"
+      >
+        Login to Existing Account
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
