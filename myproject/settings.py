@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third-party apps
+    'django_crontab',
+    
+    # Local apps
     'home',
     'users',
-    'trading',
+    'trading.apps.TradingConfig',  # Only one entry for trading app
 ]
 
 MIDDLEWARE = [
@@ -70,6 +75,10 @@ TEMPLATES = [
     },
 ]
 
+# Add Cronjobs
+CRONJOBS = [
+    ('0 8 * * *', 'django.core.management.call_command', ['update_instruments'])
+]
 
 
 
