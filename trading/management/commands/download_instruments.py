@@ -1,4 +1,3 @@
-# trading/management/commands/download_instruments.py
 from django.core.management.base import BaseCommand, CommandError
 from trading.schedulers.master_contract import download_instruments
 import time

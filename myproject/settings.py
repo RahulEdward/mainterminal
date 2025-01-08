@@ -41,10 +41,10 @@ INSTALLED_APPS = [
     # Third-party apps
     'django_crontab',
     
-    # Local apps
-    'home',
-    'users',
-    'trading.apps.TradingConfig',  # Only one entry for trading app
+     # Local apps
+    'users.apps.UsersConfig',
+    'trading.apps.TradingConfig',
+    'home.apps.HomeConfig',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +95,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# Use custom user model
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
