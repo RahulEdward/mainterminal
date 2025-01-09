@@ -1,14 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, client_id, api_key, password=None, **extra_fields):
+    def create_user(self, username, client_id, api_key, **extra_fields):
         if not username:
             raise ValueError('The Username field must be set')
         if not client_id:
             raise ValueError('The Client ID field must be set')
+        if not api_key:
+            raise ValueError('The API Key field must be set')
         
         user = self.model(
             username=username,
@@ -16,16 +18,17 @@ class CustomUserManager(BaseUserManager):
             api_key=api_key,
             **extra_fields
         )
-        user.set_password(password)
+        # Set a default password since it's required by AbstractBaseUser
+        user.set_password('defaultpass123')  # This provides a default password
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, client_id, api_key, password=None, **extra_fields):
+    def create_superuser(self, username, client_id, api_key, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
 
-        return self.create_user(username, client_id, api_key, password, **extra_fields)
+        return self.create_user(username, client_id, api_key, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
