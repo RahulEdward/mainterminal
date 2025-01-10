@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Instruments Status</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5>Total Instruments: {{ total_instruments }}</h5>
+            {% if last_update %}
+                <p>Last Updated: {{ last_update|date:"F d, Y H:i:s" }}</p>
+            {% else %}
+                <p>No updates yet</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

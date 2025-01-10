@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-danger">
+        <h4>Error Occurred</h4>
+        <p>{{ error }}</p>
+    </div>
+    <a href="{% url 'trading:instruments_status' %}" class="btn btn-primary">Back to Status</a>
+</div>
+{% endblock %}
